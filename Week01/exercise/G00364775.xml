@@ -1,0 +1,35 @@
+<?xml version="1.0"encoding="UTF-8"?>
+
+<library>
+	<catalogue category="technical">
+		<book isbn-13="978-1-59327-950-9">
+			<title>Eloquent JavaScript</title>
+			<author>Marijn Haverbeke</author>
+		</book>
+	</catalogue>
+	<catalogue category="technical">
+		<book isbn-13="978-1-118-00818-8">
+			<title>HTML &amp; CSS design and build websites</title>
+			<author>Jon Duckett</author>
+		</book>
+	</catalogue>
+	<catalogue category="technical">
+		<book isbn-13="978-1-491-95766-0">
+			<title>Python for Data Analysis</title>
+			<author>Wes McKinney</author>
+		</book>
+	</catalogue>
+	<catalogue category="cookery">
+		<book isbn-13="978-1-449-34037-7">
+			<title>Python Cookbook</title>
+			<author>David Beazley &amp; Brian K. Jones</author>
+		</book>
+	</catalogue>	
+	<catalogue category="cookery">
+		<book isbn-13="978-0-297-87043-2">
+			<title>The Hairy Dieters Book 1</title>
+			<author>Dave Myers &amp; Si King</author>
+		</book>
+	</catalogue>	
+	
+</library>	

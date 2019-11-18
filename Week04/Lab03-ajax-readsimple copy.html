@@ -1,0 +1,40 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>Week04 Lab03</title>
+</head>
+<body>
+<button onclick="readJSON()">GO</button></br>
+EURO RATE:<div id="output1"></div>
+USD RATE:<div id="output2"></div>
+GBP RATE:<div id="output3"></div>
+
+</body>
+
+<script>
+  function readJSON(){
+    $.ajax({
+        "url": "https://api.coindesk.com/v1/bpi/currentprice.json ",
+        "method":"GET",
+        "data":"",
+        "dataType": "JSON",
+        "success":function(result){
+            //console.log(result);
+            var rate = result.bpi.EUR.rate
+            //console.log(rate);
+            document.getElementById("output1").innerText = rate;
+            var rate = result.bpi.USD.rate
+            document.getElementById("output2").innerText = rate;
+            var rate = result.bpi.GBP.rate
+            document.getElementById("output3").innerText = rate;
+        },
+        "error":function(xhr,status,error){
+            console.log("error: "+status+" msg:"+error);
+        }
+    });
+  }
+
+</script>
+
+
+</html>
