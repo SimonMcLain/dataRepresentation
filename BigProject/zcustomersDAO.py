@@ -26,7 +26,7 @@ class CustomersDAO:
     print(results)
     for result in results:
       print(results)
-      returnArray.append(self.convertToDict(result))
+      returnArray.append(self.convertToDict(results))
     return returnArray
 
   def findById(self, id):

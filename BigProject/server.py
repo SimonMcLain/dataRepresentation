@@ -35,25 +35,24 @@ def create():
 # curl -i -H "Content-Type:application/json" -X PUT -d "{\"Name\":\"Google\",\"Technology\":\"Teleportation\",\"Price\":430}" "http://127.0.0.1:5000/customers/1"
 @app.route('/customers/<int:id>', methods=['PUT'])
 def update(id):
-  foundCustomers = list(filter(lambda t: t['id'] ==id, customers))
-  if (len(foundCustomers)==0):
+  foundCustomers = customersDAO.findById(id)
+  if not foundCustomers:
     abort(404)
-  foundCustomer = foundCustomers[0]
   if not request.json:
     abort(400)
   reqJson = request.json
   if 'Price' in reqJson and type(reqJson['Price']) is not int:
     abort(400)
   if 'Name' in reqJson:
-    foundCustomer['Name'] = reqJson['Name']
+    foundCustomers['Name'] = reqJson['Name']
   if 'Technology' in reqJson:
-    foundCustomer['Technology'] = reqJson['Technology']
+    foundCustomers['Technology'] = reqJson['Technology']
   if 'Price' in reqJson:
-    foundCustomer['Price'] = reqJson['Price']
+    foundCustomers['Price'] = reqJson['Price']
 
-  return jsonify(foundCustomer)
+  values =(foundCustomers['Name'], foundCustomers['Technology'], foundCustomers['Price'], foundCustomers['id'])
 
-  return "in update"+str(id)
+  return jsonify(foundCustomers)
 
 #curl -X DELETE "http://127.0.0.1:5000/customers/1"
 @app.route('/customers/<int:id>', methods=['DELETE'])
