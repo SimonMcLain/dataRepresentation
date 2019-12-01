@@ -9,10 +9,10 @@ db = mysql.connector.connect(
 
 
 cursor = db.cursor()
-sql="update student set name=%s, age=%s WHERE id = %s"
-values = ("Joe", 33, 1)
+sql="insert into customers (Name, Technology, Price) values (%s,%s,%s)"
+values = ("Amazon", "Universal Translator", 5000)
 
 cursor.execute(sql, values)
 
 db.commit()
-print("update done")
+print("One record inserted, ID: ", cursor.lastrowid)

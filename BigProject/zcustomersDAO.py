@@ -11,7 +11,7 @@ class CustomersDAO:
     
   def create(self, values):
     cursor = self.db.cursor()
-    sql="INSERT INTO customers (name, technology, price) VALUES (%s, %s, %s)"
+    sql="INSERT INTO customers (Name, Technology, Price) VALUES (%s, %s, %s)"
     cursor.execute(sql, values)
     
     self.db.commit()
@@ -21,21 +21,26 @@ class CustomersDAO:
     cursor = self.db.cursor()
     sql="SELECT * FROM customers"
     cursor.execute(sql)
-    result = cursor.fetchall()
-    return result
+    results = cursor.fetchall()
+    returnArray = []
+    print(results)
+    for result in results:
+      print(results)
+      returnArray.append(self.convertToDict(result))
+    return returnArray
 
-  def findByID(self, id):
+  def findById(self, id):
     cursor = self.db.cursor()
     sql="SELECT * FROM customers WHERE id = %s"
     values = (id,)
 
     cursor.execute(sql, values)
     result = cursor.fetchall()
-    return result
+    return self.convertToDict(result)
 
   def update(self, values):
     cursor = self.db.cursor()
-    sql="UPDATE customers SET name=%s, price=%s WHERE id = %s"
+    sql="UPDATE customers SET Name=%s, Technology=%s, Price=%s WHERE id = %s"
     cursor.execute(sql, values)
     self.db.commit()
   
@@ -47,6 +52,17 @@ class CustomersDAO:
     self.db.commit()
 
     print("Delete done")
+
+  def convertToDict(self, result):
+    colNames=['id', 'Name', 'Technology', 'Price']
+    item = {}
+    
+    if result:
+      for i, colName in enumerate(colNames):
+        value = result[i]
+        item[colName] = value
+      
+        return item
 
 customersDAO = CustomersDAO()
 
