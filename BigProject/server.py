@@ -1,6 +1,6 @@
 #!flask/bin/python
 from flask import Flask, jsonify, request, abort
-from zcustomersDAO import customersDAO
+from xcustomersDAO import customersDAO
 
 app = Flask(__name__, static_url_path='', static_folder='.')
 
@@ -27,12 +27,12 @@ def create():
     "Technology": request.json['Technology'],
     "Price": request.json['Price']
   }
-  values =(customer['Name'], customer['Technology'], customer['Price'])
+  values =(customer['Name'],customer['Technology'],customer['Price'])
   newId = customersDAO.create(values)
   customer['id'] = newId
   return jsonify(customer)
 
-# curl -i -H "Content-Type:application/json" -X PUT -d "{\"Name\":\"Google\",\"Technology\":\"Teleportation\",\"Price\":430}" "http://127.0.0.1:5000/customers/1"
+#curl -i -H "Content-Type:application/json" -X PUT -d "{\"Name\":\"Google\",\"Technology\":\"Teleportation\",\"Price\":430}" "http://127.0.0.1:5000/customers/1"
 @app.route('/customers/<int:id>', methods=['PUT'])
 def update(id):
   foundCustomers = customersDAO.findById(id)
@@ -51,7 +51,7 @@ def update(id):
     foundCustomers['Price'] = reqJson['Price']
 
   values =(foundCustomers['Name'], foundCustomers['Technology'], foundCustomers['Price'], foundCustomers['id'])
-
+  customersDAO.update(values)
   return jsonify(foundCustomers)
 
 #curl -X DELETE "http://127.0.0.1:5000/customers/1"

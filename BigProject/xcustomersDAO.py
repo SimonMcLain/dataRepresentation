@@ -5,8 +5,9 @@ class CustomersDAO:
     self.db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="",
-    database="BigProject"
+    password="root",
+    database="bigproject",
+    auth_plugin='mysql_native_password'
     )
     
   def create(self, values):
