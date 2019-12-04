@@ -1,4 +1,5 @@
 import mysql.connector
+
 class CustomersDAO:
   db=""
   def __init__(self):
@@ -26,8 +27,8 @@ class CustomersDAO:
     returnArray = []
     print(results)
     for result in results:
-      print(results)
-      returnArray.append(self.convertToDict(results))
+      print(result)
+      returnArray.append(self.convertToDict(result))
     return returnArray
 
   def findById(self, id):
@@ -36,7 +37,7 @@ class CustomersDAO:
     values = (id,)
 
     cursor.execute(sql, values)
-    result = cursor.fetchall()
+    result = cursor.fetchone()
     return self.convertToDict(result)
 
   def update(self, values):
@@ -51,7 +52,6 @@ class CustomersDAO:
     values = (id,)
     cursor.execute(sql, values)
     self.db.commit()
-
     print("Delete done")
 
   def convertToDict(self, result):
@@ -63,7 +63,7 @@ class CustomersDAO:
         value = result[i]
         item[colName] = value
       
-        return item
+    return item
 
 customersDAO = CustomersDAO()
 
