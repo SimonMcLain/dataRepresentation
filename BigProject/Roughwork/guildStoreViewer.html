@@ -1,17 +1,17 @@
 <html>
 
 <head>
-    <title>View Customers</title>
+    <title>Commerce Guild Store</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
        
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
-    <h1>Customers</h1>
+    <h1>Sellers Area</h1>
     <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
     <div>
-        <table class="table" id="customerTable">
+        <table class="table" id="sellerTable">
             <tr>
                 <th>id</th>
                 <th>Name</th>
@@ -23,7 +23,7 @@
         </table>
     </div>
     <div id='createUpdateForm' style="display: none">
-        <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Customer</h2>
+        <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Seller</h2>
         <input type="hidden" name="id"/>
         Name <input type="text" name="Name" /> <br/>
         Technology <input type="text" name="Technology" /> <br />
@@ -35,7 +35,7 @@
 <script>
     function showCreate() {
         document.getElementById('showCreateButton').style.display = "none"
-        document.getElementById('customerTable').style.display = "none"
+        document.getElementById('sellerTable').style.display = "none"
         document.getElementById('createUpdateForm').style.display = "block"
         document.getElementById('createLabel').style.display = "inline"
         document.getElementById('updateLabel').style.display = "none"
@@ -45,12 +45,12 @@
     showViewAll();
     function showViewAll() {
         document.getElementById('showCreateButton').style.display = "block"
-        document.getElementById('customerTable').style.display = "block"
+        document.getElementById('sellerTable').style.display = "block"
         document.getElementById('createUpdateForm').style.display = "none"
     }
     function showUpdate(buttonElement) {
         document.getElementById('showCreateButton').style.display = "none"
-        document.getElementById('customerTable').style.display = "none"
+        document.getElementById('sellerTable').style.display = "none"
         document.getElementById('createUpdateForm').style.display = "block"
         document.getElementById('createLabel').style.display = "none"
         document.getElementById('updateLabel').style.display = "inline"
@@ -58,47 +58,47 @@
         document.getElementById('doUpdateButton').style.display = "block"
         var rowElement = buttonElement.parentNode.parentNode
         // these is a way of finding the closest <tr> which would safer, closest()
-        var customer = getCustomerFromRow(rowElement)
-        populateFormWithCustomer(customer)
+        var seller = getSellerFromRow(rowElement)
+        populateFormWithSeller(seller)
     }
     function doCreate() {
         var form = document.getElementById('createUpdateForm')
-        var customer = {}
-        customer.Name = form.querySelector('input[name="Name"]').value
-        customer.Technology = form.querySelector('input[name="Technology"]').value
-        customer.Price = form.querySelector('input[name="Price"]').value
-        console.log(JSON.stringify(customer))
-        createCustomerAjax(customer)
+        var seller = {}
+        seller.Name = form.querySelector('input[name="Name"]').value
+        seller.Technology = form.querySelector('input[name="Technology"]').value
+        seller.Price = form.querySelector('input[name="Price"]').value
+        console.log(JSON.stringify(seller))
+        createSellerAjax(seller)
 
         
     }
     function doUpdate() {
-        var customer = getCustomerFromForm();
-        var rowElement = document.getElementById(customer.id);
-        updateCustomerAjax(customer);
-        setCustomerInRow(rowElement, customer);
+        var seller = getSellerFromForm();
+        var rowElement = document.getElementById(seller.id);
+        updateSellerAjax(seller);
+        setSellerInRow(rowElement, seller);
         clearForm(); 
         showViewAll();
     }
     function doDelete(r){
-        var tableElement = document.getElementById('customerTable');
+        var tableElement = document.getElementById('sellerTable');
         var rowElement = r.parentNode.parentNode;
         var index = rowElement.rowIndex;
-        deleteCustomerAjax(rowElement.getAttribute("id"));
+        deleteSellerAjax(rowElement.getAttribute("id"));
         tableElement.deleteRow(index);
     }
-    function addCustomerToTable(customer) {
-        var tableElement = document.getElementById('customerTable')
+    function addSellerToTable(seller) {
+        var tableElement = document.getElementById('sellerTable')
         var rowElement = tableElement.insertRow(-1)
-        rowElement.setAttribute('id', customer.id)
+        rowElement.setAttribute('id', seller.id)
         var cell1 = rowElement.insertCell(0);
-        cell1.innerHTML = customer.id
+        cell1.innerHTML = seller.id
         var cell2 = rowElement.insertCell(1);
-        cell2.innerHTML = customer.Name
+        cell2.innerHTML = seller.Name
         var cell3 = rowElement.insertCell(2);
-        cell3.innerHTML = customer.Technology
+        cell3.innerHTML = seller.Technology
         var cell4 = rowElement.insertCell(3);
-        cell4.innerHTML = customer.Price
+        cell4.innerHTML = seller.Price
         var cell5 = rowElement.insertCell(4);
         cell5.innerHTML = '<button onclick="showUpdate(this)">Update</button>'
         var cell6 = rowElement.insertCell(5);
@@ -111,51 +111,51 @@
         form.querySelector('input[name="Technology"]').value=''
         form.querySelector('input[name="Price"]').value=''
     }
-    function getCustomerFromRow(rowElement) {
-        var customer = {}
-        customer.id = rowElement.getAttribute('id')
-        customer.Name = rowElement.cells[1].firstChild.textContent
-        customer.Technology = rowElement.cells[2].firstChild.textContent
-        customer.Price = parseInt(rowElement.cells[3].firstChild.textContent, 10)
-        return customer
+    function getSellerFromRow(rowElement) {
+        var seller = {}
+        seller.id = rowElement.getAttribute('id')
+        seller.Name = rowElement.cells[1].firstChild.textContent
+        seller.Technology = rowElement.cells[2].firstChild.textContent
+        seller.Price = parseInt(rowElement.cells[3].firstChild.textContent, 10)
+        return seller
     }
-    function setCustomerInRow(rowElement, customer) {
-        rowElement.cells[0].firstChild.textContent = customer.id
-        rowElement.cells[1].firstChild.textContent = customer.Name
-        rowElement.cells[2].firstChild.textContent = customer.Technology
-        rowElement.cells[3].firstChild.textContent = customer.Price
+    function setSellerInRow(rowElement, seller) {
+        rowElement.cells[0].firstChild.textContent = seller.id
+        rowElement.cells[1].firstChild.textContent = seller.Name
+        rowElement.cells[2].firstChild.textContent = seller.Technology
+        rowElement.cells[3].firstChild.textContent = seller.Price
     }
-    function populateFormWithCustomer(customer) {
+    function populateFormWithSeller(seller) {
         var form = document.getElementById('createUpdateForm')
         form.querySelector('input[name="id"]').disabled = true
 
-        form.querySelector('input[name="id"]').value = customer.id
-        form.querySelector('input[name="Name"]').value = customer.Name
-        form.querySelector('input[name="Technology"]').value = customer.Technology
-        form.querySelector('input[name="Price"]').value = customer.Price
-        return customer
+        form.querySelector('input[name="id"]').value = seller.id
+        form.querySelector('input[name="Name"]').value = seller.Name
+        form.querySelector('input[name="Technology"]').value = seller.Technology
+        form.querySelector('input[name="Price"]').value = seller.Price
+        return seller
     }
-    function getCustomerFromForm() {
+    function getSellerFromForm() {
         var form = document.getElementById('createUpdateForm')
-        var customer = {}
-        customer.id = form.querySelector('input[name="id"]').value
-        customer.Name = form.querySelector('input[name="Name"]').value
-        customer.Technology = form.querySelector('input[name="Technology"]').value
-        customer.Price = parseInt(form.querySelector('input[name="Price"]').value,10)
-        console.log(JSON.stringify(customer))
-        return customer
+        var seller = {}
+        seller.id = form.querySelector('input[name="id"]').value
+        seller.Name = form.querySelector('input[name="Name"]').value
+        seller.Technology = form.querySelector('input[name="Technology"]').value
+        seller.Price = parseInt(form.querySelector('input[name="Price"]').value,10)
+        console.log(JSON.stringify(seller))
+        return seller
     }
 
     function getAllAjax(){
       $.ajax({
-        "url": "http://127.0.0.1:5000/customers",
+        "url": "http://127.0.0.1:5000/sellers",
         "method": "GET",
         "data":"",
         "dataType": "JSON",
         "success":function(result){
           //console.log(result);
-          for (customer of result){
-            addCustomerToTable(customer);
+          for (seller of result){
+            addSellerToTable(seller);
           }
         },
         "error":function(xhr,status,error){
@@ -163,18 +163,18 @@
         }
       });
     }
-    function createCustomerAjax(customer){
-      console.log(JSON.stringify(customer));
+    function createSellerAjax(seller){
+      //console.log(JSON.stringify(seller));
       $.ajax({
-        "url": "http://127.0.0.1:5000/customers",
+        "url": "http://127.0.0.1:5000/sellers",
         "method": "POST",
-        "data":JSON.stringify(customer),
+        "data":JSON.stringify(seller),
         "dataType": "JSON",
         contentType: "application/json; charset=utf-8",
         "success":function(result){
           //console.log(result);
-          customer.id = result.id
-          addCustomerToTable(customer)
+          seller.id = result.id
+          addSellerToTable(seller)
           clearForm()
           showViewAll()
         },
@@ -183,12 +183,12 @@
         }          
       });
     }
-    function updateCustomerAjax(customer){
-        console.log(JSON.stringify(customer));
+    function updateSellerAjax(seller){
+        console.log(JSON.stringify(seller));
         $.ajax({
-            "url": "http://127.0.0.1:5000/customers/"+encodeURI(customer.id),
+            "url": "http://127.0.0.1:5000/sellers/"+encodeURI(seller.id),
             "method":"PUT",
-            "data":JSON.stringify(customer),
+            "data":JSON.stringify(seller),
             "dataType": "JSON",
             contentType: "application/json; charset=utf-8",
             "success":function(result){
@@ -200,10 +200,10 @@
             }
         });
     }
-    function deleteCustomerAjax(id){       
+    function deleteSellerAjax(id){       
         //console.log(JSON.stringify('deleting '+id));
         $.ajax({
-            "url": "http://127.0.0.1:5000/customers/"+encodeURI(id),
+            "url": "http://127.0.0.1:5000/sellers/"+encodeURI(id),
             "method":"DELETE",
             "data":"",
             "dataType": "JSON",
