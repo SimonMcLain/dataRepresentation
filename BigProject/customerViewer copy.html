@@ -1,173 +1,36 @@
 <html>
 
 <head>
-    <title>Store Room</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>View Goods</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
        
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<style>
-  	* {
-	  box-sizing: border-box;
-	}
-	/*Put padding around each div*/
-	div {
-	  padding-top: 5px;
-	  padding-right: 0px;
-	  padding-bottom: 5px;
-	  padding-left: 0px;
-	}
-
-	/*Set the font type*/
-	body,h1 {font-family: "Raleway", sans-serif
-  
-  }
-
-
-
-    #format { 
-      background-image: url("battle-of-jakku.jpg");
-      background-repeat:no-repeat;
-      background-size:cover;
-      height: 100vh; 
-      width: 100vw; 
-      padding-top: 150px;                  
-      margin: 0px;          
- 
-      text-align: left; 
-  } 
-
-	/* Style the header */
-	header {
-	  background-color: #381010;
-	  padding: 10px;
-	  text-align: center;
-	  font-size: 35px;
-	  color: white;
-    opacity: 0.5;
-	}
-
-	/* Container for flexboxes */
-	section {
-	  display: -webkit-flex;
-	  display: flex;
-	}
-
-	/* Style the navigation menu */
-	nav {
-	  -webkit-flex: 1;
-	  -ms-flex: 1;
-	  flex: 1;
-	  padding: 20px;
-    color: white;
-    background: #334e30;
-    opacity: 0.5;
-	}
-
-	/* Style the article content */
-	article {
-	  -webkit-flex: 3;
-	  -ms-flex: 3;
-	  flex: 3;
-	  background-color: #2e557c;
-	  padding: 10px;
-    color: white;
-    opacity: 0.75;
-	}
-
-	/* Style the footer */
-	footer {
-	  background-color: #381010;
-	  padding: 15px;
-	  text-align: center;
-	  color: white;
-    opacity: 0.5;
-	}
-
-	/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
-	@media (max-width: 600px) {
-	  section {
-		-webkit-flex-direction: column;
-		flex-direction: column;
-	  }
-	}
-  .tab1 { 
-       display:inline-block; 
-       margin-left: 40px; 
-  }
-  .tab2 { 
-       display:inline-block; 
-       margin-left: 78px; 
-  }
-  .tab3 { 
-       display:inline-block; 
-       margin-left: 90px; 
-  }
-
-  </style>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
-<div id="format">
-      <header>
-        <div>
-          <h1>Unkar Plutt's Scavenged Stores</h1>
-        </div>
-      </header>
-      <section>
-        <nav>
-          <p>
-          Jakku's stores, premium pre-used Galactic Empire and Rebel Alliance War Materials.
-          </p></br>
-          <p>
-          Log items purchased from scavengers into the Store Room.
-          </p></br>
-          <p>
-          Staff are to record the name of the scavenger, the technology and the price paid in 
-          portions.
-          </p></br>
-          <p>
-          Failure to enter data correctly will be severely punished. 
-          </p></br>
-        </nav>
-        <article>
-        <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
-
-        <div>
-            <table class="table" id="customerTable" style="color: white;">
-                <tr>
-                    <th>id</th>
-                    <th>Scavenger Name</th>
-                    <th>Technology</th>
-                    <th>Price</th>
-                    <th>Modify</th>
-                    <th>Delete</th>
-                </tr>
-            </table>
-        </div>
-        <div id="myDiv">
-          <div id='createUpdateForm' style="display: none">
-              <h2><span id="createLabel">Log an item</span> <span id="updateLabel">update</span> into Stores</h2>
-              <input type="hidden" name="id"/>
-              <p> Scavenger Name <span class="tab1" > <input type="text" name="Name" </span> </p>
-              <p> Technology <span class="tab2"> <input type="text" name="Technology" /> </span> </p>
-              <p> Price Paid <span class="tab3" > <input type="number" name="Price" /> </span> </p>
-              <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
-              <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
-          </div>
-        </div>
-      </article>
-      </section>
-      <footer>
-        <p>Any persons found stealing from Unkar Plutt's Store Room will be fed to 
-        strung up for the Ripper-Raptors to feed on!</p>
-      </footer>
-</div>
+    <h1>Seller</h1>
+    <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
+    <div>
+        <table class="table" id="customerTable">
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Technology</th>
+                <th>Price</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+    </div>
+    <div id='createUpdateForm' style="display: none">
+        <h2><span id="createLabel">Log an item</span> <span id="updateLabel">update</span> for sale</h2>
+        <input type="hidden" name="id"/>
+        Name <input type="text" name="Name" /> <br/>
+        Technology <input type="text" name="Technology" /> <br />
+        Price <input type="number" name="Price" /> <br />
+        <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
+        <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+    </div>
 </body>
 <script>
     function showCreate() {
