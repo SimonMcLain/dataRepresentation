@@ -1,6 +1,6 @@
 import mysql.connector
 
-class CustomersDAO:
+class StoresDAO:
   db=""
   def __init__(self):
     self.db = mysql.connector.connect(
@@ -13,7 +13,7 @@ class CustomersDAO:
     
   def create(self, values):
     cursor = self.db.cursor()
-    sql="INSERT INTO customers (Name, Technology, Price) VALUES (%s, %s, %s)"
+    sql="INSERT INTO stores (Name, Technology, Price) VALUES (%s, %s, %s)"
     cursor.execute(sql, values)
     
     self.db.commit()
@@ -21,7 +21,7 @@ class CustomersDAO:
   
   def getAll(self):
     cursor = self.db.cursor()
-    sql="SELECT * FROM customers"
+    sql="SELECT * FROM stores"
     cursor.execute(sql)
     results = cursor.fetchall()
     returnArray = []
@@ -33,7 +33,7 @@ class CustomersDAO:
 
   def findById(self, id):
     cursor = self.db.cursor()
-    sql="SELECT * FROM customers WHERE id = %s"
+    sql="SELECT * FROM stores WHERE id = %s"
     values = (id,)
 
     cursor.execute(sql, values)
@@ -42,13 +42,13 @@ class CustomersDAO:
 
   def update(self, values):
     cursor = self.db.cursor()
-    sql="UPDATE customers SET Name=%s, Technology=%s, Price=%s WHERE id = %s"
+    sql="UPDATE stores SET Name=%s, Technology=%s, Price=%s WHERE id = %s"
     cursor.execute(sql, values)
     self.db.commit()
   
   def delete(self, id):
     cursor = self.db.cursor()
-    sql="DELETE FROM customers WHERE id = %s"
+    sql="DELETE FROM stores WHERE id = %s"
     values = (id,)
     cursor.execute(sql, values)
     self.db.commit()
@@ -65,6 +65,6 @@ class CustomersDAO:
       
     return item
 
-customersDAO = CustomersDAO()
+storesDAO = StoresDAO()
 
 

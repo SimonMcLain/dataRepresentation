@@ -122,13 +122,13 @@
       <section>
         <nav>
           <p>
-          Jakku's stores, premium pre-used Galactic Empire and Rebel Alliance War Materials.
+          Jakku Stores, premium pre-used Galactic Empire and Rebel Alliance War Materials.
           </p></br>
           <p>
           Log items purchased from scavengers into the Store Room.
           </p></br>
           <p>
-          Staff are to record the name of the scavenger, the technology and the price paid in 
+          Staff are to record the name of the scavenger selling the goods, the technology bought and the price paid in 
           portions.
           </p></br>
           <p>
@@ -164,7 +164,7 @@
       </article>
       </section>
       <footer>
-        <p>Any persons found stealing from Unkar Plutt's Store Room will be fed to 
+        <p>Any persons found stealing from Unkar Plutt's Store Room will be 
         strung up for the Ripper-Raptors to feed on!</p>
       </footer>
 </div>
@@ -285,7 +285,7 @@
 
     function getAllAjax(){
       $.ajax({
-        "url": "http://127.0.0.1:5000/customers",
+        "url": "http://127.0.0.1:5000/stores",
         "method": "GET",
         "data":"",
         "dataType": "JSON",
@@ -303,7 +303,7 @@
     function createCustomerAjax(customer){
       console.log(JSON.stringify(customer));
       $.ajax({
-        "url": "http://127.0.0.1:5000/customers",
+        "url": "http://127.0.0.1:5000/stores",
         "method": "POST",
         "data":JSON.stringify(customer),
         "dataType": "JSON",
@@ -323,7 +323,7 @@
     function updateCustomerAjax(customer){
         console.log(JSON.stringify(customer));
         $.ajax({
-            "url": "http://127.0.0.1:5000/customers/"+encodeURI(customer.id),
+            "url": "http://127.0.0.1:5000/stores/"+encodeURI(customer.id),
             "method":"PUT",
             "data":JSON.stringify(customer),
             "dataType": "JSON",
@@ -340,7 +340,7 @@
     function deleteCustomerAjax(id){       
         //console.log(JSON.stringify('deleting '+id));
         $.ajax({
-            "url": "http://127.0.0.1:5000/customers/"+encodeURI(id),
+            "url": "http://127.0.0.1:5000/stores/"+encodeURI(id),
             "method":"DELETE",
             "data":"",
             "dataType": "JSON",

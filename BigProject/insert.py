@@ -9,7 +9,7 @@ db = mysql.connector.connect(
 
 
 cursor = db.cursor()
-sql="insert into customers (Name, Technology, Price) values (%s,%s,%s)"
+sql="insert into stores (Name, Technology, Price) values (%s,%s,%s)"
 values = ("Amazon", "Universal Translator", 5000)
 
 cursor.execute(sql, values)
