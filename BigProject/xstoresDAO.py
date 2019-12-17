@@ -1,13 +1,14 @@
 import mysql.connector
+import dbconfig as cfg
 
 class StoresDAO:
   db=""
   def __init__(self):
     self.db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="root",
-    database="bigproject",
+    host=     cfg.mysql['host'],
+    user=     cfg.mysql['user'],
+    password= cfg.mysql['password'],
+    database= cfg.mysql['database'],
     auth_plugin='mysql_native_password'
     )
     

@@ -116,7 +116,7 @@
 <div id="format">
       <header>
         <div>
-          <h1>Unkar Plutt's Scavenged Stores</h1>
+          <h1>Unkar Plutt's Scavenged Goodies</h1>
         </div>
       </header>
       <section>
@@ -132,7 +132,7 @@
           portions.
           </p></br>
           <p>
-          Failure to enter data correctly will be severely punished. 
+          Failure to enter data correctly will be severely punished. If you make a mistake use the update button nerf-herders. 
           </p></br>
         </nav>
         <article>
@@ -165,7 +165,7 @@
       </section>
       <footer>
         <p>Any persons found stealing from Unkar Plutt's Store Room will be 
-        strung up for the Ripper-Raptors to feed on!</p>
+        strung up for the ripper-raptors to feed on!</p>
       </footer>
 </div>
 </body>
@@ -282,10 +282,10 @@
         console.log(JSON.stringify(customer))
         return customer
     }
-
+    host= window.location.origin
     function getAllAjax(){
       $.ajax({
-        "url": "http://127.0.0.1:5000/stores",
+        "url": host+"/stores",
         "method": "GET",
         "data":"",
         "dataType": "JSON",
@@ -300,10 +300,11 @@
         }
       });
     }
+    host= window.location.origin
     function createCustomerAjax(customer){
       console.log(JSON.stringify(customer));
       $.ajax({
-        "url": "http://127.0.0.1:5000/stores",
+        "url": host+"/stores",
         "method": "POST",
         "data":JSON.stringify(customer),
         "dataType": "JSON",
@@ -320,10 +321,11 @@
         }          
       });
     }
+    host= window.location.origin
     function updateCustomerAjax(customer){
         console.log(JSON.stringify(customer));
         $.ajax({
-            "url": "http://127.0.0.1:5000/stores/"+encodeURI(customer.id),
+            "url": host+"/stores/"+encodeURI(customer.id),
             "method":"PUT",
             "data":JSON.stringify(customer),
             "dataType": "JSON",
@@ -337,10 +339,11 @@
             }
         });
     }
+    host= window.location.origin
     function deleteCustomerAjax(id){       
         //console.log(JSON.stringify('deleting '+id));
         $.ajax({
-            "url": "http://127.0.0.1:5000/stores/"+encodeURI(id),
+            "url": host+"stores/"+encodeURI(id),
             "method":"DELETE",
             "data":"",
             "dataType": "JSON",
